@@ -25,8 +25,9 @@ Bootstrap(app)
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DECODER_PATH = os.path.join(BASE_DIR, "big_data", "decoder_8.pth")
+DECODER_PATH = os.path.join(BASE_DIR, "experiment", "big_data", "decoder_8.pth")
 
 class UploadForm(FlaskForm):
     content = FileField('Content Image')
