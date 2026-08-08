@@ -61,8 +61,8 @@ def main():
     scheduler = optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=lambda epoch: 1.0 / (1.0 + args.lr_decay * epoch))
 
     if args.resume:
-        decoder.load_state_dict(torch.load(args.decoder_path))
-        optimizer.load_state_dict(torch.load(args.optimizer_path))
+        decoder.load_state_dict(torch.load(args.decoder_path, map_location=torch.device("cpu")))
+        optimizer.load_state_dict(torch.load(args.optimizer_path, map_location=torch.device("cpu")))
 
 
     print('Starting training...')

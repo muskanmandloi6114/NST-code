@@ -40,7 +40,7 @@ class UploadForm(FlaskForm):
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 encoder = VGGEncoder('vgg_normalised.pth').to(device)
 decoder = Decoder().to(device)
-decoder.load_state_dict(torch.load(DECODER_PATH))
+decoder.load_state_dict(torch.load(DECODER_PATH, map_location=torch.device("cpu")))
 encoder.eval()
 decoder.eval()
 
