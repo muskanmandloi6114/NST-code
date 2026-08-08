@@ -24,6 +24,10 @@ Bootstrap(app)
 
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DECODER_PATH = os.path.join(BASE_DIR, "big_data", "decoder_8.pth")
+
 class UploadForm(FlaskForm):
     content = FileField('Content Image')
     style = FileField('Style Image')
@@ -36,8 +40,7 @@ device = torch.device('cuda') if torch.cuda.is_available() else torch.device('mp
 
 encoder = VGGEncoder('vgg_normalised.pth').to(device)
 decoder = Decoder().to(device)
-decoder.load_state_dict(torch.load('/Users/muskan/Desktop/NST_Code/experiment/big_data/decoder_8.pth'))
-
+decoder.load_state_dict(torch.load(DECODER_PATH))
 encoder.eval()
 decoder.eval()
 
